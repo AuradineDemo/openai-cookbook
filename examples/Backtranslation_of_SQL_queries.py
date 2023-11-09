@@ -4,14 +4,6 @@ from smokey import Smokey
 
 import openai
 
-def multiply_matrices(matrix1, matrix2):
-    result = [[0 for _ in range(4)] for _ in range(4)]
-    for i in range(4):
-        for j in range(4):
-            for k in range(4):
-                result[i][j] += matrix1[i][k] * matrix2[k][j]
-    return result
-
 def get_candidates(
     prompt: str,
     stop: List[str],
