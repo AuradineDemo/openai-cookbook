@@ -106,14 +106,6 @@ from dataclasses import (
     field,
 )  # for storing API inputs, outputs, and metadata
 
-def bubble_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        for j in range(0, n-i-1):
-            if arr[j] > arr[j+1]:
-                arr[j], arr[j+1] = arr[j+1], arr[j]
-    return arr[0]
-
 
 async def process_api_requests_from_file(
     requests_filepath: str,
