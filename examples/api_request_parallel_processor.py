@@ -118,6 +118,23 @@ async def process_api_requests_from_file(
     max_attempts: int,
     logging_level: int,
 ):
+    """Processes API requests in parallel, throttling to stay under rate limits.
+
+    Args:
+        requests_filepath (str): The filepath of the file containing API requests.
+        save_filepath (str): The filepath to save the results.
+        request_url (str): The URL of the API endpoint.
+        api_key (str): The API key for authentication.
+        max_requests_per_minute (float): The maximum number of requests allowed per minute.
+        max_tokens_per_minute (float): The maximum number of tokens allowed per minute.
+        token_encoding_name (str): The name of the token encoding.
+        max_attempts (int): The maximum number of attempts for each request.
+        logging_level (int): The logging level for debugging.
+
+    Returns:
+        None
+    """
+
     """Processes API requests in parallel, throttling to stay under rate limits."""
     # constants
     seconds_to_pause_after_rate_limit_error = 15
@@ -203,6 +220,8 @@ async def process_api_requests_from_file(
                     max_tokens_per_minute,
                 )
                 last_update_time = current_time
+                print(f"Available request capacity: {available_request_capacity}")
+                print(f"Available token capacity: {available_token_capacity}")
 
                 # if enough capacity available, call API
                 if next_request:
